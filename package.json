@@ -1,0 +1,23 @@
+{
+  "name": "baskin-lib",
+  "version": "0.1.0",
+  "description": "baskin robbins 31 web game library",
+  "main": "dist/index.js",
+  "keywords": [
+    "node",
+    "webgame"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "fifteenmania <ktthee1995@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "eslint": "^8.4.1",
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.3.0",
+    "typescript": "^4.5.4"
+  }
+}
