@@ -1,5 +1,5 @@
 
-export * from './lib/gameUtil'
-export * from './lib/linarg'
-export * from './lib/randUtil'
-export * from './lib/strategy'
+export {getCurrentNum, getCurrentPlayer, handleAiTurns, handlePlayerTurn} from './lib/gameUtil'
+export {PlayLog, PlayLogEntry} from './lib/gameUtil'
+
+export {getFullLoseProbMat} from './lib/strategy'

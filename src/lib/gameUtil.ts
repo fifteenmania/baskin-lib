@@ -10,8 +10,8 @@ export type PlayLog = PlayLogEntry[]
 
 /**
  * 
- * @param playLog Log of the game.
- * @param numPlayer number of players.
+ * @param playLog Current game play log.
+ * @param numPlayer Number of players.
  * @returns Current player who need to call next number.
  */
 export function getCurrentPlayer(playLog: PlayLog, numPlayer: number): number {
@@ -23,7 +23,7 @@ export function getCurrentPlayer(playLog: PlayLog, numPlayer: number): number {
 
 /**
  * 
- * @param playLog Log of the game.
+ * @param playLog Current game play log
  * @returns Recently called number.
  */
 export function getCurrentNum(playLog: PlayLog): number {
@@ -33,6 +33,13 @@ export function getCurrentNum(playLog: PlayLog): number {
     return playLog[playLog.length - 1].lastCall;
 }
 
+/**
+ * 
+ * @param newNum Called number without regarding ending number
+ * @param numEnd The last number of the game
+ * @param playerTurn Player number on this turn
+ * @returns New PlayLogEntry after call
+ */
 export function makePlayLogEntry(newNum: number, numEnd: number, playerTurn: number): PlayLogEntry {
     if (newNum >= numEnd) {
         return {player: playerTurn, lastCall: numEnd}
@@ -41,22 +48,31 @@ export function makePlayLogEntry(newNum: number, numEnd: number, playerTurn: num
     }
 }
 
+/**
+ * 
+ * @param loseMat Lose matrix
+ * @param playLog Current game play log
+ * @param maxCall Maximum number of call in once
+ * @param numEnd The last number of the game
+ * @param aiTurn Player number of AI playing this turn
+ * @returns Updated playLog after one AI turn
+ */
 export function handleAiTurnOnce(loseMat: number[][], playLog: PlayLog, maxCall: number, numEnd: number, aiTurn: number): PlayLogEntry {
     const currentNum = getCurrentNum(playLog);
     const loseVec = getLoseVec(loseMat, maxCall, currentNum);
     const chooseProb = getChooseProb(loseVec);
     const numChoose = getRandomIntAsVec(chooseProb);
-    const newNum = numChoose + currentNum;
+    const newNum = numChoose + currentNum + 1;
     return makePlayLogEntry(newNum, numEnd, aiTurn);
 }
 
 /**
  * 
- * @param playLog current game play log
- * @param numChoose human chose to call numbers up to `numChoose`
- * @param numEnd last number of game
- * @param playerTurn human player turn
- * @returns updated playlog after human play. Doesn't mutate original playLog.
+ * @param playLog Current game play log
+ * @param numChoose Human chose to call numbers up to `numChoose`
+ * @param numEnd The last number of the game
+ * @param playerTurn Human player turn
+ * @returns Updated playlog after human play. Doesn't mutate original playLog.
  */
 export function handlePlayerTurn(playLog: PlayLog, numChoose: number, numEnd: number, playerTurn: number): PlayLog {
     const playLogCopy = playLog.slice();
@@ -69,12 +85,12 @@ export function handlePlayerTurn(playLog: PlayLog, numChoose: number, numEnd: nu
 
 /**
  * 
- * @param loseMat lose rate matrix for all game states
- * @param playLog current game play log
- * @param maxCall maximum number of numbers
- * @param numEnd last number of game
- * @param playerTurn human player turn
- * @returns updated playlog after ai play. Doesn't mutate original `playLog`
+ * @param loseMat Lose rate matrix for all game states
+ * @param playLog Current game play log
+ * @param maxCall Maximum number of call in once
+ * @param numEnd The last number of the game
+ * @param playerTurn Human player turn
+ * @returns Updated playlog after ai play. Doesn't mutate original `playLog`
  */
 export function handleAiTurns(loseMat: number[][], playLog: PlayLog, maxCall: number, numEnd: number, playerTurn: number): PlayLog {
     const playLogCopy = playLog.slice();
