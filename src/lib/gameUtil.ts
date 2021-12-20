@@ -23,6 +23,18 @@ export function getCurrentPlayer(playLog: PlayLog, numPlayer: number): number {
 
 /**
  * 
+ * @param playLog Current game play log.
+ * @returns Last player who called number.
+ */
+export function getLastPlayer(playLog: PlayLog): number|undefined {
+    if (playLog.length === 0) {
+        return undefined;
+    }
+    return (playLog[playLog.length - 1].player);
+}
+
+/**
+ * 
  * @param playLog Current game play log
  * @returns Recently called number.
  */

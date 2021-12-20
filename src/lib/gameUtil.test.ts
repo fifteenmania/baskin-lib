@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { getCurrentPlayer, getCurrentNum, handlePlayerTurn, handleAiTurns, PlayLog } from "./gameUtil";
+import { getCurrentPlayer, getCurrentNum, handlePlayerTurn, handleAiTurns, PlayLog, getLastPlayer } from "./gameUtil";
 import { getRandomInt } from "./randUtil";
 import { getFullLoseProbMat } from "./strategy";
 
@@ -37,8 +37,19 @@ describe('getCurrentPlayer', () => {
         const testPlayLog = makeRandomTestPlayLog(4, 4, 1);
         console.log(testPlayLog);
         expect(getCurrentPlayer(testPlayLog, 4)).to.equal(2);
+    })    
+})
+
+describe("getLastPlayer", () => {
+    it("empty array undefined", () => { 
+        expect(getLastPlayer([])).to.equal(undefined)
     })
-    
+    it("", () => {
+        const testPlayLog: PlayLog = [
+            {player: 0, lastCall: 1}
+        ]
+        expect(getLastPlayer(testPlayLog)).to.equal(0)
+    })
 })
 
 describe('getCurrentNum', () => {
