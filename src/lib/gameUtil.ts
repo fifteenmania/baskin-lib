@@ -33,6 +33,13 @@ export function getLastPlayer(playLog: PlayLog): number|undefined {
     return (playLog[playLog.length - 1].player);
 }
 
+export function isEnd(playLog: PlayLog, numEnd: number): boolean {
+    if (getCurrentNum(playLog) === numEnd) {
+        return true
+    }
+    return false;
+}
+
 /**
  * 
  * @param playLog Current game play log
