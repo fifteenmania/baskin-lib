@@ -24,7 +24,7 @@ export function getCurrentPlayer(playLog: PlayLog, numPlayer: number): number {
 /**
  * 
  * @param playLog Current game play log.
- * @returns Last player who called number.
+ * @returns Last player who called number. Return `undefined` if playLog is empty.
  */
 export function getLastPlayer(playLog: PlayLog): number|undefined {
     if (playLog.length === 0) {

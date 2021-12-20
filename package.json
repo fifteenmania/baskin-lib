@@ -1,6 +1,6 @@
 {
   "name": "baskin-lib",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "baskin robbins 31 web game library",
   "main": "dist/index.js",
   "keywords": [
