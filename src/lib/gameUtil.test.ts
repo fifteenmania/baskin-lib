@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { getCurrentPlayer, getCurrentNum, handlePlayerTurn, handleAiTurns, PlayLog, getLastPlayer } from "./gameUtil";
+import { getCurrentPlayer, getCurrentNum, handlePlayerTurn, handleAiTurns, PlayLog, getLastPlayer, gameIsEnd } from "./gameUtil";
 import { getRandomInt } from "./randUtil";
 import { getFullLoseProbMat } from "./strategy";
 
@@ -49,6 +49,26 @@ describe("getLastPlayer", () => {
             {player: 0, lastCall: 1}
         ]
         expect(getLastPlayer(testPlayLog)).to.equal(0)
+    })
+})
+
+describe("gameIsEnd", () => {
+    it("end number 0", () => {
+        expect(gameIsEnd([], 0)).to.equal(true)
+    })
+    it("", () => {
+        const testLog: PlayLog = [
+            {player: 0, lastCall: 1},
+            {player: 1, lastCall: 4}
+        ]
+        expect(gameIsEnd(testLog, 4)).to.equal(true)
+    })
+    it("", () => {
+        const testLog: PlayLog = [
+            {player:0, lastCall:1},
+            {player:1, lastCall:5}
+        ]
+        expect(gameIsEnd(testLog, 4)).to.equal(false)
     })
 })
 
